@@ -173,11 +173,19 @@ ggsave(plot=p_violin,"Ne.pdf",width=6, height=3)
 library("igraph")
 
 
-thickness = c(1,median(log$b_migration.t.H3N2_subsampled.Australia_to_Hong_Kong), median(log$b_migration.t.H3N2_subsampled.Australia_to_Japan), median(log$b_migration.t.H3N2_subsampled.Australia_to_New_Zealand), median(log$b_migration.t.H3N2_subsampled.Australia_to_USA), 
-              median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_Australia),1, median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_Japan), median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_New_Zealand), median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_USA),
-              median(log$b_migration.t.H3N2_subsampled.Japan_to_Australia), median(log$b_migration.t.H3N2_subsampled.Japan_to_Hong_Kong),1, median(log$b_migration.t.H3N2_subsampled.Japan_to_New_Zealand), median(log$b_migration.t.H3N2_subsampled.Japan_to_USA),
-              median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_Australia), median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_Hong_Kong), median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_Japan),1, median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_USA),
-              median(log$b_migration.t.H3N2_subsampled.USA_to_Australia), median(log$b_migration.t.H3N2_subsampled.USA_to_Hong_Kong), median(log$b_migration.t.H3N2_subsampled.USA_to_Japan), median(log$b_migration.t.H3N2_subsampled.USA_to_New_Zealand),1)
+# thickness = c(1,median(log$b_migration.t.H3N2_subsampled.Australia_to_Hong_Kong), median(log$b_migration.t.H3N2_subsampled.Australia_to_Japan), median(log$b_migration.t.H3N2_subsampled.Australia_to_New_Zealand), median(log$b_migration.t.H3N2_subsampled.Australia_to_USA), 
+#               median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_Australia),1, median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_Japan), median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_New_Zealand), median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_USA),
+#               median(log$b_migration.t.H3N2_subsampled.Japan_to_Australia), median(log$b_migration.t.H3N2_subsampled.Japan_to_Hong_Kong),1, median(log$b_migration.t.H3N2_subsampled.Japan_to_New_Zealand), median(log$b_migration.t.H3N2_subsampled.Japan_to_USA),
+#               median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_Australia), median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_Hong_Kong), median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_Japan),1, median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_USA),
+#               median(log$b_migration.t.H3N2_subsampled.USA_to_Australia), median(log$b_migration.t.H3N2_subsampled.USA_to_Hong_Kong), median(log$b_migration.t.H3N2_subsampled.USA_to_Japan), median(log$b_migration.t.H3N2_subsampled.USA_to_New_Zealand),1)
+
+
+thickness = c(1,median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_Australia), median(log$b_migration.t.H3N2_subsampled.Japan_to_Australia), median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_Australia), median(log$b_migration.t.H3N2_subsampled.USA_to_Australia), 
+              median(log$b_migration.t.H3N2_subsampled.Australia_to_Hong_Kong),1, median(log$b_migration.t.H3N2_subsampled.Japan_to_Hong_Kong), median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_Hong_Kong), median(log$b_migration.t.H3N2_subsampled.USA_to_Hong_Kong),
+              median(log$b_migration.t.H3N2_subsampled.Australia_to_Japan), median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_Japan),1, median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_Japan), median(log$b_migration.t.H3N2_subsampled.USA_to_Japan),
+              median(log$b_migration.t.H3N2_subsampled.Australia_to_New_Zealand), median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_New_Zealand), median(log$b_migration.t.H3N2_subsampled.Japan_to_New_Zealand),1, median(log$b_migration.t.H3N2_subsampled.USA_to_New_Zealand),
+              median(log$b_migration.t.H3N2_subsampled.Australia_to_USA), median(log$b_migration.t.H3N2_subsampled.Hong_Kong_to_USA), median(log$b_migration.t.H3N2_subsampled.Japan_to_USA), median(log$b_migration.t.H3N2_subsampled.New_Zealand_to_USA),1)
+
 
 Edges <- data.frame(
   from = rep(c("Australia","Hong Kong","Japan","New Zealand","New York"),each=5),
@@ -203,13 +211,15 @@ vertex_sizes = c(median(log$Ne.t.H3N2_subsampled.Australia),
                 median(log$Ne.t.H3N2_subsampled.Japan),
                 median(log$Ne.t.H3N2_subsampled.New_Zealand),
                 median(log$Ne.t.H3N2_subsampled.USA))
-pdf("migration.pdf", height=8,width=8)
 
+# vertcols <- c(colors[1],colors[2],colors[3],colors[4],
+#               colors[5])
 edgecols <- c(colors[1],colors[1],colors[1],colors[1],
               colors[2],colors[2],colors[2],colors[2],
               colors[3],colors[3],colors[3],colors[3],
               colors[4],colors[4],colors[4],colors[4],
               colors[5],colors[5],colors[5],colors[5])
 
+pdf("migration.pdf", height=5,width=5)
 plot(g, vertex.color=colors, edge.color=edgecols, vertex.label.dist=100.5, vertex.label.color="black", vertex.size=as.matrix(vertex_sizes*20))
 dev.off()

@@ -190,8 +190,30 @@ p_Ne <- ggplot()+
 plot(p_Ne)
 
 
-ggsave(plot=p_mig,"../../text/figures/Rates_migration.pdf",width=5, height=5)
-ggsave(plot=p_Ne,"../../text/figures/Rates_ne.pdf",width=5, height=5)
+
+p_mig <- ggplot()+
+  geom_point(data=m,aes( x=true,y=est), size=0.0001) +
+  scale_fill_continuous(low = "white", high = "black") +
+  geom_segment(data=m, aes(x = 0.001, y = 0.001, xend = 100, yend = 100), color="red") +
+  scale_y_log10(limits=c(0.001,100)) + scale_x_log10(limits=c(0.001,100)) +
+  ylab("estimated") + xlab("true") + ggtitle("migration rates") + 
+  theme(legend.position="none")
+plot(p_mig)
+
+
+p_Ne <- ggplot()+
+  geom_point(data=Ne,aes(x=0.5/true,y=est), size=0.0001) +
+  scale_fill_continuous(low = "white", high = "black") +
+  geom_segment(data=Ne, aes(x = 0.1, y = 0.1, xend = 10, yend = 10), color="red") +
+  scale_y_log10(limits=c(0.1,10)) + scale_x_log10(limits=c(0.1,10)) +
+  ylab("estimated") + xlab("true") + ggtitle("effective population size") + 
+  theme(legend.position="none")
+plot(p_Ne)
+
+
+
+ggsave(plot=p_mig,"../../text/figures/Rates_migration.pdf",width=3, height=3)
+ggsave(plot=p_Ne,"../../text/figures/Rates_ne.pdf",width=3, height=3)
 
 print(sprintf("coverage migration = %f ", mean(cov.m$isIn)))
 print(sprintf("coverage Ne = %f ",mean(cov.Ne$isIn)))

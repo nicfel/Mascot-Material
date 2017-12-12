@@ -36,19 +36,20 @@ indices_nud = order(t_node_states$V2)
 df_ud <- data.frame(x = seq(1,length(t_node_states$V1)), y=t_node_states$V1[indices_ud])
 df_nud <- data.frame(x = seq(1,length(t_node_states$V2)), y=t_node_states$V2[indices_nud])
 p_node <-  ggplot() +
-  geom_line(data=df_ud[seq(1,length(t_node_states$V1),100),], aes(x=x,y=y, color="With Forwards/Backwards")) +
-  geom_line(data=df_nud[seq(1,length(t_node_states$V1),100),], aes(x=x,y=y, color="Without Forwards/Backwards")) +
+  geom_line(data=df_ud[seq(1,length(t_node_states$V1),1000),], aes(x=x,y=y, color="With Backwards/Forwards")) +
+  geom_line(data=df_nud[seq(1,length(t_node_states$V1),1000),], aes(x=x,y=y, color="Without Backwards/Forwards")) +
   ggtitle("internal node states") +
   ylab("posterior support of true node state") + xlab("ordered nodes") +
-  scale_colour_manual("",values = c("With Forwards/Backwards" = col1, "Without Forwards/Backwards" = col3),
-                    breaks=c("With Forwards/Backwards", "Without Forwards/Backwards")) + 
-  theme(legend.position= c(0.6, 0.4))
+  scale_colour_manual("",values = c("With Backwards/Forwards" = col1, "Without Backwards/Forwards" = col3),
+                    breaks=c("With Backwards/Forwards", "Without Backwards/Forwards")) + 
+  theme(legend.position= c(0.6, 0.2),
+        legend.background = element_rect(fill=alpha('white', 0)))
 plot(p_node)
 
 df <- data.frame(x = 1, y = sum(1-t_node_states$V1)/length(t_node_states$V1), color=col1)
 df <- rbind(df, data.frame(x = 2, y = sum(1-t_node_states$V2)/length(t_node_states$V2), color=col3))
 p_bar <-  ggplot(df, aes(x,y,fill=color)) + geom_col() +
-  ylab("mean posterior support of wrong internal node state") + xlab("")+
+  ylab("mean posterior support") + xlab("")+
   ggtitle("support of wrong internal node state") +
   theme(legend.position="none",
         axis.text.x=element_blank(),
@@ -68,9 +69,9 @@ p_root <-  ggplot() +
   ggtitle("root states") 
 plot(p_root)
 
-ggsave(plot=p_node,"../../text/Figures/NodeStates_nodes.pdf",width=5, height=5)
-ggsave(plot=p_bar,"../../text/Figures/NodeStates_bar.pdf",width=5, height=5)
-ggsave(plot=p_root,"../../text/Figures/NodeStates_root.pdf",width=5, height=5)
+ggsave(plot=p_node,"../../text/Figures/NodeStates_nodes.pdf",width=3, height=3)
+ggsave(plot=p_bar,"../../text/Figures/NodeStates_bar.pdf",width=3, height=3)
+ggsave(plot=p_root,"../../text/Figures/NodeStates_root.pdf",width=3, height=3)
 
 
 
