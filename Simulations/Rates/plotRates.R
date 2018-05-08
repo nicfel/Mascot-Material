@@ -7,7 +7,6 @@
 library(ggplot2)
 # needed to calculate ESS values
 library(coda)
-library(XML)
 library("methods")
 
 
@@ -64,10 +63,23 @@ for (i in seq(1,length(log),1)){
   ess <- effectiveSize(t)
 
     
-  if (min(ess[2:6])<100){
+  if (min(ess[38:39])<100){
     print("masco ESS value to low")
-    print(sprintf("ESS value is %f for file %s",min(ess[2:6]),filename1))
+    print(sprintf("ESS value is %f for file %s",min(ess[38:39]),filename1))
   }else{
+#     mcc_fname_nud_in = gsub("mascot.log", "mascot.nud.trees", filename1)
+#     mcc_fname_in = gsub("mascot.log", "mascot.trees", filename1)
+# 
+#     mcc_fname_nud_out = gsub("./logs/", "./mcc/", mcc_fname_nud_in)
+#     mcc_fname_out = gsub("./logs/", "./mcc/", mcc_fname_in)
+#     
+#     
+#     # if the ess is above 100, get the mcc tree
+#     system(paste("/Applications/BEAST\\ 2.4.7/bin/treeannotator -burnin 10 ", mcc_fname_nud_in, mcc_fname_nud_out, sep=" "))
+#     system(paste("/Applications/BEAST\\ 2.4.7/bin/treeannotator -burnin 10 ", mcc_fname_in, mcc_fname_out, sep=" "))
+    
+    
+    
     if (i==1){
       dfname <- data.frame(filename = filename1)
       

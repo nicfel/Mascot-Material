@@ -6,17 +6,17 @@
 clear
 
 % get the master tree files
-master = dir('master/*.tree');
+mcc = dir('mcc/*nud.trees');
 
 r = fopen('root_probs.txt','w');
 g = fopen('node_probs.txt','w');
 
 
-for i = 1 : length(master)
-    disp(master(i).name)
+for i = 1 : length(mcc)
+    disp(mcc(i).name)
     
     %% get the master tree string
-    f = fopen(['master/' master(i).name]);
+    f = fopen(['master/' strrep(mcc(i).name,'1mascot.nud.trees', 'master.tree')]);
     line = fgets(f);
     while length(line)<100
         line = fgets(f);
@@ -25,7 +25,7 @@ for i = 1 : length(master)
     mt = tmp{4};clear tmp;fclose(f);
     
     %% get the up down tree string
-    tmp_name = strrep(master(i).name, 'master.tree', '1mascot.trees');
+    tmp_name = strrep(mcc(i).name, '.nud.trees', '.trees');
     f = fopen(['mcc/' tmp_name]);
     line = fgets(f);
     while length(line)<100
@@ -35,7 +35,7 @@ for i = 1 : length(master)
     ut = strrep(tmp{4},'%','');clear tmp;fclose(f);
     
     %% get the w/o up down tree string
-    tmp_name = strrep(master(i).name, 'master.tree', '1mascot.nud.trees');
+    tmp_name = mcc(i).name;
     f = fopen(['mcc/' tmp_name]);
     line = fgets(f);
     while length(line)<100

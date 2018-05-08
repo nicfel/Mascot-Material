@@ -65,7 +65,7 @@ for i = 1 : length(tree_files)
         end
         fprintf(g,'\t</data>\n');
 
-        fprintf(g,'\t<run id="mcmc" spec="MCMC" chainLength="100000">\n');
+        fprintf(g,'\t<run id="mcmc" spec="MCMC" chainLength="1000000">\n');
         fprintf(g,'\t\t<state id="state" storeEvery="5000">\n');
         fprintf(g,'\t\t\t<stateNode id="tree" spec="beast.app.mascot.beauti.TreeWithTrait">\n');
         fprintf(g,'\t\t\t\t<typeTrait id="typeTraitSet.t" spec="beast.evolution.tree.TraitSet" traitname="type" value="');

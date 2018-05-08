@@ -7,7 +7,6 @@
 library(ggplot2)
 # needed to calculate ESS values
 library(coda)
-library(XML)
 library("methods")
 
 

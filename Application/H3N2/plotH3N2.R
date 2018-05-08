@@ -19,7 +19,7 @@ line=readLines(con)
 close(con)
 
 
-tr <- read.tree(text=line)
+tr <- read.tree(tex=line)
 tr[[1]] <- ladderize(tr[[1]], right = F)
 tr[[2]] <- ladderize(tr[[2]], right = F)
 edges <- tr[[2]]$edge
@@ -101,19 +101,32 @@ for (i in 1: length(tip_labs)){
 }
 
 
-
-size_col[[265]]=1
-size_col[[286]]=1
-size_col[[287]]=1
-size_col[[288]]=1
-size_col[[288]]=1
+size_col[[272]]=1
+size_col[[273]]=1
+size_col[[362]]=1
+size_col[[11]]=1
+size_col[[12]]=1
 size_col[[2]]=1
-size_col[[5]]=1
-size_col[[7]]=1
-size_col[[13]]=1
 size_col[[215]]=1
-size_col[[345]]=1
-size_col[[3]]=1
+size_col[[216]]=1
+# size_col[[9]]=1
+
+size_col[[247]]=1
+
+
+
+# size_col[[290]]=1
+# size_col[[360]]=1
+# size_col[[9]]=1
+# 
+# 
+# size_col[[2]]=1
+# size_col[[5]]=1
+# size_col[[7]]=1
+# size_col[[13]]=1
+# size_col[[215]]=1
+# size_col[[345]]=1
+# size_col[[3]]=1
 
 
 pdf("tree.pdf", height=8,width=8)
@@ -131,6 +144,10 @@ nodelabels(pch=21, col=node_col4[which(size_col==1),],  node=which(size_col==1)+
 nodelabels(pie=node_col2[which(size_col==1),], node=which(size_col==1)+length(tr[[2]]$tip.label), piecol=colors, adj=c(-6, 0.6),  cex=0.7)
 nodelabels(pie=node_col1[which(size_col==1),], node=which(size_col==1)+length(tr[[2]]$tip.label), piecol=colors, adj=c(7.5, 0.6),  cex=0.7)
 
+colss = seq(1,length(tr[[2]]$tip.label))
+# nodelabels(text=colss, node=colss+length(tr[[2]]$tip.label),cex=0.25)
+           
+           
 # color the root
 nodelabels(pie= matrix(node_col1[1,],1), node=length(tr[[2]]$tip.label)+1, piecol=colors, adj=c(0.5,0.5),  cex=1.7)
 

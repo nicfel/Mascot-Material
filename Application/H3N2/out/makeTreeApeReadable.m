@@ -35,10 +35,13 @@ for it = 1 : length(input_tree)
                     [sprintf('%.3f_',prob(1:end-1)) sprintf('%.3f',prob(end))]));            
             end
             tree{it,1} = tmp;
-            fprintf(g, '%s', tmp);                        
+            fprintf(g, '%s\n', tmp);                        
         end
     end
     fclose(f);
 
 end
 fclose(g);
+
+%%
+length(strfind(tmp,'('))
